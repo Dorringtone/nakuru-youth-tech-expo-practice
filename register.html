@@ -13,7 +13,6 @@
   <header>
     <a href="index.html">Nakuru Youth Tech Expo</a>
 
-    <!-- Keep the same link order as Home and Programme. -->
     <nav aria-label="Main navigation">
       <a href="index.html">Home</a>
       <a href="programme.html">Programme</a>
@@ -33,31 +32,28 @@
         registrations or reserve a place.
       </p>
 
-      <!-- The browser checks required fields and email format.
-           The fields intentionally have no name attributes, so their
-           values are not sent when the page reloads. -->
-      <form class="registration-form"
-            action="register.html#registration-heading"
-            method="get"
-            aria-describedby="registration-note">
+      <!-- The browser checks required fields and email format. The fields
+           omit name attributes so sample values are not sent on submit. -->
+      <form
+        class="registration-form"
+        action="register.html#registration-heading"
+        method="get"
+        aria-describedby="registration-note"
+      >
         <p>
-          <label for="full-name">Full name (required)</label><br>
-          <input type="text" id="full-name" autocomplete="name"
-                 maxlength="100" required>
+          <label for="full-name">Full name (required)</label>
+          <input type="text" id="full-name" autocomplete="name" maxlength="100" required>
         </p>
 
         <p>
-          <label for="email">Email address (required)</label><br>
-          <input type="email" id="email" autocomplete="email"
-                 maxlength="254" required>
+          <label for="email">Email address (required)</label>
+          <input type="email" id="email" autocomplete="email" maxlength="254" required>
         </p>
 
         <p>
-          <label for="session">
-            Session you’re most interested in (required)
-          </label><br>
+          <label for="session">Session you’re most interested in (required)</label>
           <select id="session" required>
-            <!-- An empty value keeps the prompt from counting as a choice. -->
+            <!-- The empty value keeps the prompt from counting as a choice. -->
             <option value="" selected disabled>Choose a session</option>
             <option value="tech-careers">Opening talk: Careers in technology</option>
             <option value="online-safety">Talk: Staying safe online</option>
@@ -73,8 +69,14 @@
 
     <section aria-labelledby="questions-heading">
       <h2 id="questions-heading">Questions about the expo?</h2>
+      <p>Need help with registration or the programme? Get in touch on WhatsApp.</p>
 
-      <!-- Add the WhatsApp link here once the group agrees on a number. -->
+      <!-- The WhatsApp number includes the country code, with no + or spaces. -->
+      <p>
+        <a href="https://wa.me/254755559107?text=Hello%2C%20I%20have%20a%20question%20about%20the%20Nakuru%20Youth%20Tech%20Expo.">
+          Ask about the expo on WhatsApp
+        </a>
+      </p>
     </section>
   </main>
 

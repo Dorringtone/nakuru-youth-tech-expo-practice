@@ -80,3 +80,57 @@ main {
 .schedule-table tbody tr:nth-child(even) {
   background-color: #f1f5f9;
 }
+
+/* Keep the form compact on desktop and let it fill the space on phones. */
+.registration-form {
+  box-sizing: border-box;
+  max-width: 36rem;
+  padding: 1.25rem;
+  border: 1px solid #d8e0e8;
+  border-radius: 0.75rem;
+  background-color: #f1f5f9;
+}
+
+.registration-form p {
+  margin: 0 0 1rem;
+}
+
+.registration-form label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+}
+
+.registration-form input,
+.registration-form select {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 44px;
+  padding: 0.6rem;
+  border: 1px solid #718096;
+  border-radius: 0.4rem;
+  background-color: #fff;
+  color: #16324f;
+  font: inherit;
+}
+
+.registration-form button {
+  min-height: 44px;
+  padding: 0.65rem 1rem;
+  border: 0;
+  border-radius: 0.4rem;
+  background-color: #16324f;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+}
+
+.registration-form button:hover {
+  background-color: #244b70;
+}
+
+/* Make the active control easy to spot when navigating with Tab. */
+.registration-form :focus-visible {
+  outline: 3px solid #2164a8;
+  outline-offset: 3px;
+}
