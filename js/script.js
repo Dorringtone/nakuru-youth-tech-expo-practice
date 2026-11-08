@@ -12,6 +12,15 @@ if (menuToggle && mainNav) {
 
   function syncMenuLayout() {
     const isWide = wideScreen.matches;
+    // Move focus before a viewport change hides the focused control.
+    if (!isWide && mainNav.contains(document.activeElement)) {
+      menuToggle.hidden = false;
+      menuToggle.focus();
+    } else if (isWide && document.activeElement === menuToggle) {
+      mainNav.hidden = false;
+      mainNav.querySelector('[aria-current="page"]')?.focus();
+    }
+
     menuToggle.hidden = isWide;
     setMobileMenu(false);
 
@@ -23,6 +32,18 @@ if (menuToggle && mainNav) {
 
   menuToggle.addEventListener("click", () => {
     setMobileMenu(mainNav.hidden);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape" || event.defaultPrevented ||
+        wideScreen.matches || mainNav.hidden) return;
+
+    // Return focus to Menu before hiding a focused navigation link.
+    if (menuToggle === document.activeElement || mainNav.contains(document.activeElement)) {
+      menuToggle.focus();
+      event.preventDefault();
+    }
+    setMobileMenu(false);
   });
 
   wideScreen.addEventListener("change", syncMenuLayout);

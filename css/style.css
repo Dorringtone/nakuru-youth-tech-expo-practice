@@ -312,8 +312,7 @@ body > header :is(a, button):focus-visible {
   }
 }
 
-/* Give the two shorter pages a tighter content width than Programme. */
-body > main.home-layout,
+/* Keep the registration layout narrower than Programme. */
 body > main:has(> .register-layout) {
   max-width: 64rem;
 }
@@ -339,9 +338,8 @@ body > main:has(> .register-layout) {
   margin-block-start: 0.5rem;
 }
 
-/* On desktop, use the space beside the intro and form. */
+/* On desktop, put registration help beside the form. */
 @media (min-width: 1024px) {
-  .home-layout,
   .register-layout {
     display: grid;
     grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
@@ -350,8 +348,6 @@ body > main:has(> .register-layout) {
     align-items: start;
   }
 
-  .home-layout h1,
-  .home-highlights,
   .register-layout h2 {
     margin-block-start: 0;
   }
@@ -363,12 +359,6 @@ body > main:has(> .register-layout) {
   .register-layout .registration-form {
     max-width: none;
   }
-}
-
-/* Keep highlights below the hero; only the hero uses two columns. */
-body > main.home-layout {
-  display: block;
-  max-width: 72rem;
 }
 
 .home-hero {
@@ -415,13 +405,36 @@ body > main.home-layout {
   text-decoration: underline;
 }
 
-.home-layout .home-highlights {
-  margin-block-start: 1.5rem;
-}
-
 @media (min-width: 1024px) {
   .home-hero {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 2rem;
   }
+}
+/* Reveal the skip link on keyboard focus, above the sticky header. */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 20;
+  padding: 0.65rem 1rem;
+  border-radius: 0.4rem;
+  background-color: var(--color-surface);
+  color: var(--color-ink);
+  transform: translateY(calc(-100% - 1rem));
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+body > footer a {
+  display: inline-block;
+  margin-block-start: 0.5rem;
+  color: var(--color-ink);
+}
+
+body > footer a:hover {
+  color: var(--color-hover);
+  text-decoration-thickness: 2px;
 }
