@@ -212,3 +212,22 @@ body > header a:focus-visible {
 body > header nav[hidden] {
   display: none;
 }
+
+/* Style the countdown only after JavaScript reveals it. */
+#expo-countdown:not([hidden]) {
+  display: table;
+  box-sizing: border-box;
+  max-width: 100%;
+  margin: 1rem 0 1.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  background-color: #16324f;
+  color: #fff;
+  font-family: system-ui, sans-serif;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 700;
+  line-height: 1.5;
+
+  /* Equal-width digits keep the text from shifting as the timer ticks. */
+  font-variant-numeric: tabular-nums;
+}
