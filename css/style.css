@@ -1,59 +1,187 @@
-/* Start with one column so the profiles are easy to read on phones. */
-.speaker-grid {
-  display: grid;
-  gap: 1.25rem;
+/* Shared colours and typography for all three pages. */
+:root {
+  --color-ink: #16324f;
+  --color-surface: #fff;
+  --color-muted-surface: #f1f5f9;
+  --color-border: #d8e0e8;
+  --color-control-border: #718096;
+  --color-hover: #284b6b;
+  --color-focus: #2164a8;
+  --color-header-focus: #ffd166;
+  --font-body: system-ui, sans-serif;
 }
 
-.speaker-card {
-  min-width: 0;
-  padding: 1rem;
-  border: 1px solid #d8e0e8;
-  border-radius: 0.75rem;
-  background: #fff;
+/* Leave room for the sticky header when jumping to a heading. */
+html {
+  scroll-padding-top: 9rem;
 }
 
-/* Use the same frame for every portrait without stretching the image. */
-.speaker-card img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  object-position: center 30%;
-  border-radius: 0.5rem;
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  line-height: 1.5;
 }
 
-/* Add columns when there is enough space for the profile text. */
-@media (min-width: 768px) {
-  .speaker-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1024px) {
-  .speaker-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-/* Keep the page readable on wide screens and leave space at the edges. */
-main {
+/* Main fills spare space on short pages and grows on long pages. */
+body > main {
+  flex: 1 0 auto;
   width: calc(100% - 2rem);
   max-width: 72rem;
   margin-inline: auto;
   padding-block: 2rem;
 }
 
-/* Fit the whole portrait in a consistent frame without cropping faces. */
-.speaker-card img {
-  width: 100%;
-  height: 13rem;
-  aspect-ratio: auto;
-  object-fit: contain;
-  object-position: center;
-  background-color: #f1f5f9;
+body > footer {
+  padding: 1rem;
+  background-color: var(--color-muted-surface);
+  text-align: center;
 }
 
-/* Give the schedule room to breathe while letting long titles wrap. */
+body > footer p {
+  margin: 0;
+}
+
+main a {
+  color: var(--color-ink);
+}
+
+main a:hover {
+  color: var(--color-hover);
+  text-decoration-thickness: 2px;
+}
+
+/* Show a visible outline when navigating with the keyboard. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+/* Shared header: stack the brand and menu on small screens. */
+body > header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem clamp(1rem, 4vw, 3rem);
+  background-color: var(--color-ink);
+  color: var(--color-surface);
+}
+
+body > header > a {
+  color: inherit;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+body > header > a:hover {
+  text-decoration: underline;
+}
+
+body > header nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.5rem;
+}
+
+/* The flex rule would otherwise override the hidden attribute. */
+body > header nav[hidden] {
+  display: none;
+}
+
+body > header nav a {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.375rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+body > header nav a:hover {
+  background-color: var(--color-hover);
+  text-decoration: underline;
+}
+
+body > header nav a[aria-current="page"] {
+  background-color: var(--color-surface);
+  color: var(--color-ink);
+  font-weight: 700;
+}
+
+body > header :is(a, button):focus-visible {
+  outline-color: var(--color-header-focus);
+}
+
+.menu-toggle {
+  min-height: 44px;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid currentColor;
+  border-radius: 0.375rem;
+  background-color: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.menu-toggle:hover {
+  background-color: var(--color-hover);
+}
+
+/* Style the countdown only after JavaScript reveals it. */
+#expo-countdown:not([hidden]) {
+  width: fit-content;
+  box-sizing: border-box;
+  max-width: 100%;
+  margin: 1rem 0 1.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--color-ink);
+  color: var(--color-surface);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 700;
+
+  /* Equal-width digits reduce movement as the seconds change. */
+  font-variant-numeric: tabular-nums;
+}
+
+/* Programme: one column on phones, with more columns at wider widths. */
+.speaker-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+}
+
+.speaker-card {
+  min-width: 0;
+  padding: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  background-color: var(--color-surface);
+}
+
+/* Fit the whole portrait into a consistent frame without cropping faces. */
+.speaker-card img {
+  display: block;
+  width: 100%;
+  height: 13rem;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 0.5rem;
+  background-color: var(--color-muted-surface);
+}
+
 .schedule-table {
   width: 100%;
   border-collapse: collapse;
@@ -67,28 +195,28 @@ main {
 .schedule-table th,
 .schedule-table td {
   padding: 0.65rem 0.5rem;
-  border-bottom: 1px solid #d8e0e8;
+  border-bottom: 1px solid var(--color-border);
   text-align: left;
   vertical-align: top;
 }
 
 .schedule-table thead {
-  background-color: #16324f;
-  color: #fff;
+  background-color: var(--color-ink);
+  color: var(--color-surface);
 }
 
 .schedule-table tbody tr:nth-child(even) {
-  background-color: #f1f5f9;
+  background-color: var(--color-muted-surface);
 }
 
-/* Keep the form compact on desktop and let it fill the space on phones. */
+/* Register: keep the form compact and the controls easy to tap. */
 .registration-form {
   box-sizing: border-box;
   max-width: 36rem;
   padding: 1.25rem;
-  border: 1px solid #d8e0e8;
+  border: 1px solid var(--color-border);
   border-radius: 0.75rem;
-  background-color: #f1f5f9;
+  background-color: var(--color-muted-surface);
 }
 
 .registration-form p {
@@ -107,10 +235,10 @@ main {
   width: 100%;
   min-height: 44px;
   padding: 0.6rem;
-  border: 1px solid #718096;
+  border: 1px solid var(--color-control-border);
   border-radius: 0.4rem;
-  background-color: #fff;
-  color: #16324f;
+  background-color: var(--color-surface);
+  color: var(--color-ink);
   font: inherit;
 }
 
@@ -119,115 +247,181 @@ main {
   padding: 0.65rem 1rem;
   border: 0;
   border-radius: 0.4rem;
-  background-color: #16324f;
-  color: #fff;
+  background-color: var(--color-ink);
+  color: var(--color-surface);
   font: inherit;
   cursor: pointer;
 }
 
 .registration-form button:hover {
-  background-color: #244b70;
+  background-color: var(--color-hover);
 }
 
-/* Make the active control easy to spot when navigating with Tab. */
-.registration-form :focus-visible {
-  outline: 3px solid #2164a8;
-  outline-offset: 3px;
+/* Keep the native disclosure marker so each FAQ looks expandable. */
+.expo-faq {
+  max-width: 42rem;
+  margin-block: 2rem;
 }
 
-/* Shared header: stack the brand and navigation on small screens. */
-body > header {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.75rem;
-  padding: 1rem clamp(1rem, 4vw, 3rem);
-  background-color: #16324f;
-  color: #fff;
+.expo-faq details {
+  margin-block: 0.5rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  background-color: var(--color-muted-surface);
 }
 
-body > header > a {
-  color: inherit;
-  font-size: 1.2rem;
+.expo-faq summary {
   font-weight: 700;
-  text-decoration: none;
+  cursor: pointer;
 }
 
-/* Let the links wrap if the screen is too narrow for one row. */
-body > header nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem 0.5rem;
+.expo-faq summary:hover {
+  text-decoration: underline;
 }
 
-body > header nav a {
-  display: block;
-  padding: 0.5rem 0.75rem;
-  border-radius: 0.375rem;
-  color: inherit;
-  text-decoration: none;
+.expo-faq details p {
+  margin: 0.75rem 0 0;
 }
 
-body > header nav a:hover {
-  background-color: #284b6b;
-}
-
-/* Each page already marks its own link with aria-current="page". */
-body > header nav a[aria-current="page"] {
-  background-color: #fff;
-  color: #16324f;
-  font-weight: 700;
-}
-
-body > header a:focus-visible {
-  outline: 3px solid #ffd166;
-  outline-offset: 3px;
-}
-
-/* On wider screens, place the brand and links on the same row. */
+/* Tablet: put the brand and navigation on one row. */
 @media (min-width: 768px) {
+  html {
+    scroll-padding-top: 6rem;
+  }
+
   body > header {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
   }
+
+  .speaker-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
-.menu-toggle {
-  padding: 0.5rem 0.75rem;
-  border: 1px solid currentColor;
-  border-radius: 0.375rem;
-  background: transparent;
-  color: inherit;
-  font: inherit;
-  cursor: pointer;
+/* Desktop: use three profile columns and give the footer more room. */
+@media (min-width: 1024px) {
+  .speaker-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  body > footer {
+    padding: 1.5rem 2rem;
+  }
 }
 
-.menu-toggle:focus-visible {
-  outline: 3px solid #ffd166;
-  outline-offset: 3px;
+/* Give the two shorter pages a tighter content width than Programme. */
+body > main.home-layout,
+body > main:has(> .register-layout) {
+  max-width: 64rem;
 }
 
-/* The existing display: flex rule would otherwise override hidden. */
-body > header nav[hidden] {
-  display: none;
+.home-highlights {
+  margin-block-start: 1.5rem;
+  padding: clamp(1rem, 3vw, 1.75rem);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  background-color: var(--color-muted-surface);
 }
 
-/* Style the countdown only after JavaScript reveals it. */
-#expo-countdown:not([hidden]) {
-  display: table;
-  box-sizing: border-box;
-  max-width: 100%;
-  margin: 1rem 0 1.5rem;
-  padding: 0.75rem 1rem;
+.home-highlights h2 {
+  margin-block-start: 0;
+}
+
+.home-highlights ul {
+  margin-block-end: 0;
+  padding-inline-start: 1.25rem;
+}
+
+.home-highlights li + li {
+  margin-block-start: 0.5rem;
+}
+
+/* On desktop, use the space beside the intro and form. */
+@media (min-width: 1024px) {
+  .home-layout,
+  .register-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-content: start;
+    align-items: start;
+  }
+
+  .home-layout h1,
+  .home-highlights,
+  .register-layout h2 {
+    margin-block-start: 0;
+  }
+
+  .register-help .expo-faq {
+    margin-block-start: 0;
+  }
+
+  .register-layout .registration-form {
+    max-width: none;
+  }
+}
+
+/* Keep highlights below the hero; only the hero uses two columns. */
+body > main.home-layout {
+  display: block;
+  max-width: 72rem;
+}
+
+.home-hero {
+  display: grid;
+  gap: 1.5rem;
+  align-items: center;
+  padding: clamp(1rem, 3vw, 2.5rem);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  background-color: var(--color-muted-surface);
+}
+
+.home-hero h1 {
+  margin-block: 0 1rem;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 1.15;
+}
+
+.home-hero-image {
+  display: block;
+  width: 100%;
+  height: auto;
   border-radius: 0.5rem;
-  background-color: #16324f;
-  color: #fff;
-  font-family: system-ui, sans-serif;
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  font-weight: 700;
-  line-height: 1.5;
+}
 
-  /* Equal-width digits keep the text from shifting as the timer ticks. */
-  font-variant-numeric: tabular-nums;
+.home-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+}
+
+.home-actions .home-primary-link {
+  padding: 0.65rem 1rem;
+  border-radius: 0.4rem;
+  background-color: var(--color-ink);
+  color: var(--color-surface);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.home-actions .home-primary-link:hover {
+  background-color: var(--color-hover);
+  text-decoration: underline;
+}
+
+.home-layout .home-highlights {
+  margin-block-start: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .home-hero {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 2rem;
+  }
 }

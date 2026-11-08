@@ -25,7 +25,6 @@
       Menu
     </button>
 
-    <!-- Keep the same link order on every page and mark the current page. -->
     <nav id="main-nav" aria-label="Main navigation">
       <a href="index.html" aria-current="page">Home</a>
       <a href="programme.html">Programme</a>
@@ -33,16 +32,39 @@
     </nav>
   </header>
 
-  <main>
-    <section aria-labelledby="expo-heading">
-      <h1 id="expo-heading">Nakuru Youth Tech Expo</h1>
-      <p>Explore technology and career opportunities at our one-day youth expo.</p>
-      <p><time datetime="2026-12-05">Saturday, 5 December 2026</time></p>
+  <main class="home-layout">
+    <!-- Only the introduction and image share a row on desktop. -->
+    <section class="home-hero" aria-labelledby="expo-heading">
+      <div class="home-hero-copy">
+        <h1 id="expo-heading">Nakuru Youth Tech Expo</h1>
+        <p>Explore technology and career opportunities at our one-day youth expo.</p>
+        <p><time datetime="2026-12-05">Saturday, 5 December 2026</time></p>
 
-      <!-- The shared script fills in and reveals the countdown. -->
-      <p id="expo-countdown" hidden></p>
+        <!-- The shared script fills in and reveals the countdown. -->
+        <p id="expo-countdown" hidden></p>
 
-      <a href="programme.html">View the programme</a>
+        <div class="home-actions">
+          <a class="home-primary-link" href="programme.html">View the programme</a>
+          <a href="register.html">Go to registration</a>
+        </div>
+      </div>
+
+      <img
+        class="home-hero-image"
+        src="images/expo-workshop.webp"
+        alt="Young people and a mentor working with laptops and a small robot at a technology workshop"
+        width="1200"
+        height="800"
+      >
+    </section>
+
+    <section class="home-highlights" aria-labelledby="highlights-heading">
+      <h2 id="highlights-heading">Expo highlights</h2>
+      <ul>
+        <li>Explore careers in technology.</li>
+        <li>Build your first web page in a hands-on workshop.</li>
+        <li>See youth projects and meet other attendees.</li>
+      </ul>
     </section>
   </main>
 

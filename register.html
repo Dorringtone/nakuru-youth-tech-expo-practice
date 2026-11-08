@@ -10,86 +10,115 @@
   <script src="js/script.js" defer></script>
 </head>
 <body>
-
   <header>
     <a href="index.html">Nakuru Youth Tech Expo</a>
 
     <!-- JavaScript reveals the Menu button on small screens. -->
     <button
-        class="menu-toggle"
-        type="button"
-        aria-controls="main-nav"
-        aria-expanded="false"
-        hidden
+      class="menu-toggle"
+      type="button"
+      aria-controls="main-nav"
+      aria-expanded="false"
+      hidden
     >
-        Menu
+      Menu
     </button>
 
     <nav id="main-nav" aria-label="Main navigation">
-        <a href="index.html">Home</a>
-        <a href="programme.html">Programme</a>
-        <a href="register.html" aria-current="page">Register</a>
+      <a href="index.html">Home</a>
+      <a href="programme.html">Programme</a>
+      <a href="register.html" aria-current="page">Register</a>
     </nav>
-    </header>
+  </header>
 
   <main>
     <h1>Register for the Expo</h1>
     <p>Planning to attend? Browse the programme to see what’s on.</p>
     <p><a href="programme.html">View the expo programme</a></p>
 
-    <section aria-labelledby="registration-heading">
-      <h2 id="registration-heading">Registration form</h2>
-      <p id="registration-note">
-        Use sample details to try the form. This preview does not save
-        registrations or reserve a place.
-      </p>
-
-      <!-- The browser checks required fields and email format. The fields
-           omit name attributes so sample values are not sent on submit. -->
-      <form
-        class="registration-form"
-        action="register.html#registration-heading"
-        method="get"
-        aria-describedby="registration-note"
-      >
-        <p>
-          <label for="full-name">Full name (required)</label>
-          <input type="text" id="full-name" autocomplete="name" maxlength="100" required>
+    <!-- The form and help sections sit side by side on desktop. -->
+    <div class="register-layout">
+      <section aria-labelledby="registration-heading">
+        <h2 id="registration-heading">Registration form</h2>
+        <p id="registration-note">
+          Use sample details to try the form. This preview does not save
+          registrations or reserve a place.
         </p>
 
-        <p>
-          <label for="email">Email address (required)</label>
-          <input type="email" id="email" autocomplete="email" maxlength="254" required>
-        </p>
+        <!-- The browser validates the fields. Omitting name attributes
+             keeps the sample values out of the submitted URL. -->
+        <form
+          class="registration-form"
+          action="register.html#registration-heading"
+          method="get"
+          aria-describedby="registration-note"
+        >
+          <p>
+            <label for="full-name">Full name (required)</label>
+            <input type="text" id="full-name" autocomplete="name" maxlength="100" required>
+          </p>
 
-        <p>
-          <label for="session">Session you’re most interested in (required)</label>
-          <select id="session" required>
-            <!-- The empty value keeps the prompt from counting as a choice. -->
-            <option value="" selected disabled>Choose a session</option>
-            <option value="tech-careers">Opening talk: Careers in technology</option>
-            <option value="online-safety">Talk: Staying safe online</option>
-            <option value="web-workshop">Workshop: Build your first web page</option>
-            <option value="career-panel">Career panel: Portfolios, internships and first jobs</option>
-            <option value="project-demos">Youth project demos and networking</option>
-          </select>
-        </p>
+          <p>
+            <label for="email">Email address (required)</label>
+            <input type="email" id="email" autocomplete="email" maxlength="254" required>
+          </p>
 
-        <button type="submit">Check registration details</button>
-      </form>
-    </section>
+          <p>
+            <label for="session">Session you’re most interested in (required)</label>
+            <select id="session" required>
+              <!-- The empty value keeps the prompt from counting as a choice. -->
+              <option value="" selected disabled>Choose a session</option>
+              <option value="tech-careers">Opening talk: Careers in technology</option>
+              <option value="online-safety">Talk: Staying safe online</option>
+              <option value="web-workshop">Workshop: Build your first web page</option>
+              <option value="career-panel">Career panel: Portfolios, internships and first jobs</option>
+              <option value="project-demos">Youth project demos and networking</option>
+            </select>
+          </p>
 
-    <section aria-labelledby="questions-heading">
-      <h2 id="questions-heading">Questions about the expo?</h2>
-      <p>Need help with registration or the programme? Get in touch on WhatsApp.</p>
+          <button type="submit">Check registration details</button>
+        </form>
+      </section>
 
-      <!-- The WhatsApp number includes the country code, with no + or spaces. -->
-      <p>
-        <a href="https://wa.me/254755559107?text=Hello%2C%20I%20have%20a%20question%20about%20the%20Nakuru%20Youth%20Tech%20Expo.">
-          Ask about the expo on WhatsApp
-        </a>
-      </p>
-    </section>
+      <div class="register-help">
+        <section class="expo-faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+
+          <!-- Native disclosure controls work with a mouse, touch, or keyboard. -->
+          <details>
+            <summary>When does the expo start?</summary>
+            <p>Check-in starts at 9:00 AM Kenya time on Saturday, 5 December 2026.</p>
+          </details>
+
+          <details>
+            <summary>What can I do at the expo?</summary>
+            <p>Join technology talks, a hands-on web workshop, a careers panel, and youth project demos.</p>
+          </details>
+
+          <details>
+            <summary>Does submitting the form reserve a place?</summary>
+            <p>No. This form is a preview. Use sample details to try it; it does not save registrations.</p>
+          </details>
+
+          <details>
+            <summary>Where can I see the full schedule?</summary>
+            <p>Visit the <a href="programme.html">Programme page</a> for session times and rooms.</p>
+          </details>
+        </section>
+
+        <section aria-labelledby="questions-heading">
+          <h2 id="questions-heading">Questions about the expo?</h2>
+          <p>Need help with registration or the programme? Get in touch on WhatsApp.</p>
+
+          <!-- The WhatsApp number includes the country code, with no + or spaces. -->
+          <p>
+            <a href="https://wa.me/254755559107?text=Hello%2C%20I%20have%20a%20question%20about%20the%20Nakuru%20Youth%20Tech%20Expo.">
+              Ask about the expo on WhatsApp
+            </a>
+          </p>
+        </section>
+      </div>
+    </div>
   </main>
 
   <footer>
