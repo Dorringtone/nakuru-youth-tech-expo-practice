@@ -28,10 +28,47 @@
 
     <section aria-labelledby="registration-heading">
       <h2 id="registration-heading">Registration form</h2>
-      <p>This is a course demonstration. Please use sample details.</p>
+      <p id="registration-note">
+        Use sample details to try the form. This preview does not save
+        registrations or reserve a place.
+      </p>
 
-      <!-- Add the HTML form here. Match each label's for attribute
-           to its field's id, and mark mandatory fields as required. -->
+      <!-- The browser checks required fields and email format.
+           The fields intentionally have no name attributes, so their
+           values are not sent when the page reloads. -->
+      <form class="registration-form"
+            action="register.html#registration-heading"
+            method="get"
+            aria-describedby="registration-note">
+        <p>
+          <label for="full-name">Full name (required)</label><br>
+          <input type="text" id="full-name" autocomplete="name"
+                 maxlength="100" required>
+        </p>
+
+        <p>
+          <label for="email">Email address (required)</label><br>
+          <input type="email" id="email" autocomplete="email"
+                 maxlength="254" required>
+        </p>
+
+        <p>
+          <label for="session">
+            Session you’re most interested in (required)
+          </label><br>
+          <select id="session" required>
+            <!-- An empty value keeps the prompt from counting as a choice. -->
+            <option value="" selected disabled>Choose a session</option>
+            <option value="tech-careers">Opening talk: Careers in technology</option>
+            <option value="online-safety">Talk: Staying safe online</option>
+            <option value="web-workshop">Workshop: Build your first web page</option>
+            <option value="career-panel">Career panel: Portfolios, internships and first jobs</option>
+            <option value="project-demos">Youth project demos and networking</option>
+          </select>
+        </p>
+
+        <button type="submit">Check registration details</button>
+      </form>
     </section>
 
     <section aria-labelledby="questions-heading">
