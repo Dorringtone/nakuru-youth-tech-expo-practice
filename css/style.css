@@ -1,0 +1,82 @@
+/* Start with one column so the profiles are easy to read on phones. */
+.speaker-grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.speaker-card {
+  min-width: 0;
+  padding: 1rem;
+  border: 1px solid #d8e0e8;
+  border-radius: 0.75rem;
+  background: #fff;
+}
+
+/* Use the same frame for every portrait without stretching the image. */
+.speaker-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center 30%;
+  border-radius: 0.5rem;
+}
+
+/* Add columns when there is enough space for the profile text. */
+@media (min-width: 768px) {
+  .speaker-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .speaker-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Keep the page readable on wide screens and leave space at the edges. */
+main {
+  width: calc(100% - 2rem);
+  max-width: 72rem;
+  margin-inline: auto;
+  padding-block: 2rem;
+}
+
+/* Fit the whole portrait in a consistent frame without cropping faces. */
+.speaker-card img {
+  width: 100%;
+  height: 13rem;
+  aspect-ratio: auto;
+  object-fit: contain;
+  object-position: center;
+  background-color: #f1f5f9;
+}
+
+/* Give the schedule room to breathe while letting long titles wrap. */
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.schedule-table caption {
+  padding-bottom: 0.5rem;
+  text-align: left;
+}
+
+.schedule-table th,
+.schedule-table td {
+  padding: 0.65rem 0.5rem;
+  border-bottom: 1px solid #d8e0e8;
+  text-align: left;
+  vertical-align: top;
+}
+
+.schedule-table thead {
+  background-color: #16324f;
+  color: #fff;
+}
+
+.schedule-table tbody tr:nth-child(even) {
+  background-color: #f1f5f9;
+}
