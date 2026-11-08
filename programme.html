@@ -10,16 +10,27 @@
   <script src="js/script.js" defer></script>
 </head>
 <body>
+
   <header>
     <a href="index.html">Nakuru Youth Tech Expo</a>
 
-    <!-- aria-current identifies this page in the shared navigation. -->
-    <nav aria-label="Main navigation">
-      <a href="index.html">Home</a>
-      <a href="programme.html" aria-current="page">Programme</a>
-      <a href="register.html">Register</a>
+    <!-- JavaScript reveals the Menu button on small screens. -->
+    <button
+        class="menu-toggle"
+        type="button"
+        aria-controls="main-nav"
+        aria-expanded="false"
+        hidden
+    >
+        Menu
+    </button>
+
+    <nav id="main-nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="programme.html" aria-current="page">Programme</a>
+        <a href="register.html">Register</a>
     </nav>
-  </header>
+    </header>
 
   <main>
     <h1>Expo Programme</h1>

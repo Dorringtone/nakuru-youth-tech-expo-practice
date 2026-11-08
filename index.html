@@ -13,9 +13,19 @@
   <header>
     <a href="index.html">Nakuru Youth Tech Expo</a>
 
-    <!-- Keep the links in the same order on every page.
-         Move aria-current="page" to the link for the page you are editing. -->
-    <nav aria-label="Main navigation">
+    <!-- JavaScript reveals this button on mobile. Without it, the links stay visible. -->
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-controls="main-nav"
+      aria-expanded="false"
+      hidden
+    >
+      Menu
+    </button>
+
+    <!-- Keep the same link order on every page and mark the current page. -->
+    <nav id="main-nav" aria-label="Main navigation">
       <a href="index.html" aria-current="page">Home</a>
       <a href="programme.html">Programme</a>
       <a href="register.html">Register</a>
